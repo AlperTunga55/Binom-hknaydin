@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int main() {
+    int n, a, b;
+    
+    //Kullanicidan verileri aliyoruz
+    printf("a, b ve n degerlerini girin: ");
+    scanf("%d %d %d", &a, &b, &n);
+
+    // Binom acilimini hesaplamak icin dongu
+    int k;
+    long long katsayi, usA, usB;
+
+    for (k = 0; k <= n; k++) {
+        katsayi = 1;
+
+        // Katsayi hesapliyoruz
+        int i;
+        for (i = 1; i <= k; i++) {
+            katsayi = katsayi * (n - i + 1);  // Çarpma islemi
+            katsayi = katsayi / i;  // Bölme islemi
+        }
+
+        // Us alma 
+        usA = 1;
+        usB = 1;
+        for (i = 0; i < (n - k); i++) usA *= a;
+        for (i = 0; i < k; i++) usB *= b;
+
+        // Terimi hesaplayarak yazdiriyoruz
+        printf("%lld", katsayi * usA * usB);
+        if (k < n) printf(" + ");
+    }
+
+    printf("\n");
+    return 0;
+}
